@@ -12,7 +12,7 @@ interface resVideo extends Response {
 }
 
 class VideoMiddleware {
-  async validateId (req:Request, res:resVideo, next:NextFunction) {
+  async validateId (req:Request, res:resVideo, next:NextFunction):Promise<Response> {
     const { id } = req.params
     if (!isUuid(id)) {
       return res.status(400).json({ err: 'ID inválido' })
