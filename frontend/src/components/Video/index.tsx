@@ -9,14 +9,14 @@ interface VideoApi{
   liked:boolean
 }
 
-const Video :React.FC<VideoApi> = ({ _id, title, link, liked }) => {
+const Video :React.FC<VideoApi> = ({ _id, title, link, liked }:VideoApi) => {
   return (
     <li>
       <Container>
         <h2>{title}</h2>
         <a href={link} target="_blank" rel="noreferrer" >{link}</a>
         <ButtonArea>
-        <Button>
+        <Button >
             <IoThumbsUp/>
           </Button>
 
