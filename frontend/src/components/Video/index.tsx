@@ -1,6 +1,8 @@
-import React from 'react'
-import { Button, ButtonArea, Container } from './styles'
+import React, { useContext } from 'react'
+import { Button, ButtonArea, ButtonLiked, Container } from './styles'
 import { IoThumbsUp, IoPencil, IoTrashBin } from 'react-icons/io5'
+import { VideoContext } from '../../contexts/VideoContext'
+import api from '../../services/api'
 
 interface VideoApi{
   _id: string,
@@ -10,21 +12,42 @@ interface VideoApi{
 }
 
 const Video :React.FC<VideoApi> = ({ _id, title, link, liked }:VideoApi) => {
+  const {
+    setIsOpenModal,
+    setTitle,
+    setLink,
+    setId
+  } = useContext(VideoContext)
+
+  const handleEdit = (videoId:string, videoTitle:string, videoLink:string) => {
+    setTitle(videoTitle)
+    setLink(videoLink)
+    setId(videoId)
+
+    setIsOpenModal(true)
+  }
+  const handleLike = (id:string) => {
+    api.patch(`videos/${id}`)
+  }
+  const handleDelete = (id:string) => {
+    api.delete(`videos/${id}`)
+  }
+
   return (
     <li>
       <Container>
         <h2>{title}</h2>
         <a href={link} target="_blank" rel="noreferrer" >{link}</a>
         <ButtonArea>
-        <Button >
+        <ButtonLiked liked={liked} onClick={() => handleLike(_id)}>
             <IoThumbsUp/>
-          </Button>
+          </ButtonLiked>
 
-          <Button>
+          <Button onClick={() => handleEdit(_id, title, link)}>
             <IoPencil/>
           </Button>
 
-          <Button>
+          <Button onClick={() => handleDelete(_id)}>
             <IoTrashBin/>
           </Button>
         </ButtonArea>

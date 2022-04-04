@@ -9,10 +9,17 @@ const FormModal = () => {
     title,
     setTitle,
     link,
-    setLink
+    setLink,
+    id
   } = useContext(VideoContext)
 
   const handleClose = () => {
+    if (title) {
+      setTitle('')
+    }
+    if (link) {
+      setLink('')
+    }
     setIsOpenModal(false)
   }
 
@@ -21,9 +28,20 @@ const FormModal = () => {
     const video = {
       title, link
     }
-    api.post('videos', video)
+
+    if (id) {
+      api.put(`videos/${id}`, video)
+    } else {
+      api.post('videos', video)
+    }
 
     setIsOpenModal(false)
+    if (title) {
+      setTitle('')
+    }
+    if (link) {
+      setLink('')
+    }
   }
 
   return (

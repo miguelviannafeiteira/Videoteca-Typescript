@@ -45,7 +45,33 @@ export const Button = styled.button`
   cursor:pointer;
   transition: opacity .2s ease-out;
 
+  svg {
+    height:20px;
+    width:20px;
+    color: #1e1e1e;
+  }
+  &:hover{
+    opacity:.5;
+  }
+`
 
+interface PropTypeLike {
+  liked:boolean;
+}
+
+export const ButtonLiked = styled.button.attrs((props: PropTypeLike) => ({
+  color: props.liked
+}))<PropTypeLike>`
+  border:none;
+  background-color:transparent;
+  cursor:pointer;
+  transition: opacity .2s ease-out;
+
+  svg {
+    height:20px;
+    width:20px;
+    color: ${(props) => (props.liked ? '#3ea6ff' : '#1e1e1e')};
+  }
   &:hover{
     opacity:.5;
   }
