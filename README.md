@@ -5,10 +5,9 @@
 
 <div>
   <h1 align="center">Layout do Site</h1>
-   <img src="./layout/pagina-home.png" width=450> 
-   <img src="./layout/pagina-shop.png" width=450> 
-   <img src="./layout/pagina-produto.png" width=450>
-   <img src="./layout/pagina-cart.png" width=450>
+   <img src="./Imagens/home.png" width=450> 
+   <img src="./Imagens/editing.png" width=450> 
+   <img src="./Imagens/add.png" width=450>
 </div>
 
 <div>
@@ -20,7 +19,6 @@
     <li>Axios</li>
     <li>Hooks</li>
     <li>React Icons</li>
-    <li>SWR</li>
     <li>Styled Components</li>
     </ul>
     <li>Node.js</li>  
