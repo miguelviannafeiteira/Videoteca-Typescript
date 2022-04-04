@@ -1,13 +1,15 @@
 import React, { FormEvent, useContext } from 'react'
 import { VideoContext } from '../../contexts/VideoContext'
+import api from '../../services/api'
 import { Overlay, Container, Header, Footer, FormContainer, FormMain, InputGroup, CheckIcon, CloseIcon } from './styles'
 
 const FormModal = () => {
   const {
-    setIsOpenModal, formTitle,
-    setFormTitle,
-    formLink,
-    setFormLink
+    setIsOpenModal,
+    title,
+    setTitle,
+    link,
+    setLink
   } = useContext(VideoContext)
 
   const handleClose = () => {
@@ -16,8 +18,12 @@ const FormModal = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
+    const video = {
+      title, link
+    }
+    api.post('videos', video)
 
-    window.location.reload()
+    setIsOpenModal(false)
   }
 
   return (
@@ -29,17 +35,17 @@ const FormModal = () => {
             <CloseIcon/>
           </button>
         </Header>
-        <FormContainer >
-          <FormMain onSubmit={handleSubmit}>
+        <FormContainer onSubmit={handleSubmit}>
+          <FormMain >
 
             <InputGroup>
               <label htmlFor="title">Title</label>
-              <input id="title" type="text" value={formTitle} onChange={(e) => setFormTitle(e.target.value)} />
+              <input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
             </InputGroup>
 
             <InputGroup>
               <label htmlFor="link">Link</label>
-              <input id="link" type="text" value={formLink} onChange={(e) => setFormLink(e.target.value)}/>
+              <input id="link" type="text" value={link} onChange={(e) => setLink(e.target.value)}/>
             </InputGroup>
 
           </FormMain>

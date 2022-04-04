@@ -4,10 +4,10 @@ import FormModal from '../components/FormModal'
 interface VideoContextType {
   isOpenModal: boolean,
   setIsOpenModal: (newState: boolean) =>void,
-  formTitle: string,
-  formLink: string,
-  setFormTitle: (newState: string) => void,
-  setFormLink: (newState: string) => void,
+  title: string,
+  link: string,
+  setTitle: (newState: string) => void,
+  setLink: (newState: string) => void,
 }
 
 interface VideoContextProps {
@@ -17,27 +17,27 @@ interface VideoContextProps {
 const initialValue = {
   isOpenModal: false,
   setIsOpenModal: () => {},
-  formTitle: '',
-  formLink: '',
-  setFormTitle: () => {},
-  setFormLink: () => {}
+  title: '',
+  link: '',
+  setTitle: () => {},
+  setLink: () => {}
 }
 
 export const VideoContext = createContext<VideoContextType>(initialValue)
 
 export const VideoContextProvider = ({ children }:VideoContextProps) => {
   const [isOpenModal, setIsOpenModal] = useState(initialValue.isOpenModal)
-  const [formTitle, setFormTitle] = useState(initialValue.formTitle)
-  const [formLink, setFormLink] = useState(initialValue.formLink)
+  const [title, setTitle] = useState(initialValue.title)
+  const [link, setLink] = useState(initialValue.link)
 
   return (
     <VideoContext.Provider value={{
       isOpenModal,
       setIsOpenModal,
-      formTitle,
-      setFormTitle,
-      formLink,
-      setFormLink
+      title,
+      setTitle,
+      link,
+      setLink
     }}>
     {children}
     {isOpenModal && <FormModal/>}
