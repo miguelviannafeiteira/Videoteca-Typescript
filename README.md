@@ -20,7 +20,6 @@
     <li>Axios</li>
     <li>Hooks</li>
     <li>React Icons</li>
-    <li>SWR</li>
     <li>Styled Components</li>
     </ul>
     <li>Node.js</li>  
