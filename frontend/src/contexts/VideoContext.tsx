@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import React, { createContext, ReactNode, useState } from 'react'
 import FormModal from '../components/FormModal'
 
@@ -47,7 +48,7 @@ export const VideoContextProvider = ({ children }:VideoContextProps) => {
       setId
     }}>
     {children}
-    {isOpenModal && <FormModal/>}
+    {isOpenModal && <FormModal data-testid="modal"/>}
     </VideoContext.Provider>
 
   )

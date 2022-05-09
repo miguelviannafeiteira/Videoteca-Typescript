@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import React, { FormEvent, useContext } from 'react'
 import { VideoContext } from '../../contexts/VideoContext'
 import api from '../../services/api'
@@ -45,7 +46,7 @@ const FormModal = () => {
   }
 
   return (
-    <Overlay>
+    <Overlay data-testid="modal">
       <Container>
         <Header>
           <strong>Adcionar a video</strong>

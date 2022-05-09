@@ -18,10 +18,9 @@ const VideoList = () => {
     api.get('videos').then(({ data }) => {
       setVideos(data.videos)
     })
-  }, [videos])
-
+  }, [])
   return (
-    <Container>
+    <Container data-testid="resolved">
       <VideoListWrapper>
         {videos?.map((video) => (
           <Video
