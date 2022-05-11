@@ -1,0 +1,41 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-use-before-define */
+import React from 'react'
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
+import '@testing-library/jest-dom'
+import user from '@testing-library/user-event'
+import FormModal from './index'
+import { debug } from 'console'
+
+// jest.mock('../VideoList/index.tsx', () => ({
+//   ...jest.requireActual('../VideoList.index.tsx'),
+//   VideoList: jest.fn(() => <div>oi</div>)
+// }))
+
+describe('Form', () => {
+  beforeEach(() => {
+    render(<FormModal />)
+  })
+
+  it('OnSubmit is called when all fields are full', async () => {
+    user.type(getTitle(), 'Novo Video')
+    user.type(getLink(), 'https://www.youtube.com/watch?v=MhFSuOjU624&list=PLYSZyzpwBEWTBdbfStjqJSGaulqcHoNkT&index=8&ab_channel=BrunoAntunes')
+    debug()
+    user.click(screen.getByTestId('submit'))
+    await waitForElementToBeRemoved(() => screen.queryByTestId('modal'))
+    // const box = await screen.getByRole('listitem')
+    // expect(box).toBeInTheDocument()
+  })
+})
+
+function getTitle () {
+  return screen.getByRole('textbox', {
+    name: /title/i
+  })
+}
+
+function getLink () {
+  return screen.getByRole('textbox', {
+    name: /link/i
+  })
+}
