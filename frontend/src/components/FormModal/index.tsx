@@ -69,7 +69,7 @@ const FormModal = () => {
 
           </FormMain>
           <Footer>
-            <button type="submit">
+            <button type="submit" data-testid="submit">
               <CheckIcon />
             </button>
           </Footer>

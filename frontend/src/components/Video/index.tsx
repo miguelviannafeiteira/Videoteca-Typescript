@@ -39,7 +39,8 @@ const Video :React.FC<VideoApi> = ({ _id, title, link, liked }:VideoApi) => {
         <h2>{title}</h2>
         <a href={link} target="_blank" rel="noreferrer" >{link}</a>
         <ButtonArea>
-        <ButtonLiked liked={liked} onClick={() => handleLike(_id)}>
+        <ButtonLiked data-testid="likeButton" liked={liked} onClick={() => handleLike(_id)}>
+          {liked ? 'liked' : 'unliked'}
             <IoThumbsUp/>
           </ButtonLiked>
 
